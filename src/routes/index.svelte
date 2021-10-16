@@ -1,116 +1,134 @@
 <script>
     import { gql } from '@apollo/client/core/core.cjs.js';
     import { client } from '$lib/graphql-client';
-    import { getClient } from 'svelte-apollo';
+    //import VehicleSelect from '$lib/components/VehicleSelect.svelte';
+    import { appStore, searchHistory, vehicle } from '$lib/store';
+
     import { format } from 'timeago.js';
     import { onMount } from 'svelte';
-    let time = Date.now();
-    let ticks = 0;
-    let refreshTimeStamp = Date.now(); // refresh list time displayevery 30 second
-    const REFRESH_INTERVAL = 1000; // every second
-    $: {
-        // every 30 seconds update todo items
-        ticks++;
-        if (ticks >= 30) {
-            ticks = 0;
-            refreshTimeStamp = time;
-        }
-    }
-    const initialTodo = {
-        title: '',
-        completed: false
-    };
-    let newTodo = Object.assign({}, initialTodo);
-    const insertMutation = gql `
-        mutation InsertTodo($title: String!, $completed: Boolean) {
-          insert_todo(objects: { completed: $completed, title: $title }) {
-            affected_rows
-            returning {
-              id
-            }
-          }
-        }
-      `;
-    function insertTodo() {
-        // const insertData = mutation(insertMutation); // works during dev
-        time = Date.now(); // update time as our interval could run slower
-        refreshTimeStamp = time;
-        client.mutate({
-            mutation: insertMutation,
-            variables: newTodo
-        });
-        newTodo = Object.assign({}, initialTodo);
-    }
-    const queryTodo = gql `
-        subscription {
-          ebay_product(where: { ebay_searchproducts: { search_id: { _eq: 29 } } }) {
-            id
-            ebay_id
-            url
-            title
-            description
-            price
-            thumbnail_url
-            ebay_productimages {
-              id
-              url
-              __typename
-            }
-          }
-        }
-      `;
-    let todos = client.subscribe({ query: queryTodo });
-    const deleteMutation = gql `
-        mutation DeleteTodo($id: uuid!) {
-          delete_todo_by_pk(id: $id) {
-            id
-            title
-          }
-        }
-      `;
-    const deleteTodo = (id) => {
-        client.mutate({
-            mutation: deleteMutation,
-            variables: { id }
-        });
-    };
-    const setTodoCompletedMutation = gql `
-        mutation SetTodoCompleted($id: uuid!, $completed: Boolean) {
-          update_todo_by_pk(pk_columns: { id: $id }, _set: { completed: $completed }) {
-            id
-          }
-        }
-      `;
+
+
+
+    import { getClient } from "svelte-apollo";
+
+    
+
+    // let time = Date.now();
+    // let ticks = 0;
+    // let refreshTimeStamp = Date.now(); // refresh list time displayevery 30 second
+    // const REFRESH_INTERVAL = 1000; // every second
+    // $: {
+    //     // every 30 seconds update todo items
+    //     ticks++;
+    //     if (ticks >= 30) {
+    //         ticks = 0;
+    //         refreshTimeStamp = time;
+    //     }
+    // }
+    // const initialTodo = {
+    //     title: '',
+    //     completed: false
+    // };
+    // let newTodo = Object.assign({}, initialTodo);
+    // const insertMutation = gql `
+    //     mutation InsertTodo($title: String!, $completed: Boolean) {
+    //       insert_todo(objects: { completed: $completed, title: $title }) {
+    //         affected_rows
+    //         returning {
+    //           id
+    //         }
+    //       }
+    //     }
+    //   `;
+    // function insertTodo() {
+    //     // const insertData = mutation(insertMutation); // works during dev
+    //     time = Date.now(); // update time as our interval could run slower
+    //     refreshTimeStamp = time;
+    //     client.mutate({
+    //         mutation: insertMutation,
+    //         variables: newTodo
+    //     });
+    //     newTodo = Object.assign({}, initialTodo);
+    // }
+    // const queryTodo = gql `
+    //     subscription {
+    //       ebay_product(where: { ebay_searchproducts: { search_id: { _eq: 29 } } }) {
+    //         id
+    //         ebay_id
+    //         url
+    //         title
+    //         description
+    //         price
+    //         thumbnail_url
+    //         ebay_productimages {
+    //           id
+    //           url
+    //           __typename
+    //         }
+    //       }
+    //     }
+    //   `;
+    // let todos = client.subscribe({ query: queryTodo });
+    // const deleteMutation = gql `
+    //     mutation DeleteTodo($id: uuid!) {
+    //       delete_todo_by_pk(id: $id) {
+    //         id
+    //         title
+    //       }
+    //     }
+    //   `;
+    // const deleteTodo = (id) => {
+    //     client.mutate({
+    //         mutation: deleteMutation,
+    //         variables: { id }
+    //     });
+    // };
+    // const setTodoCompletedMutation = gql `
+    //     mutation SetTodoCompleted($id: uuid!, $completed: Boolean) {
+    //       update_todo_by_pk(pk_columns: { id: $id }, _set: { completed: $completed }) {
+    //         id
+    //       }
+    //     }
+    //   `;
 
       
-    const toggleTodoCompleted = (todo) => {
-        const { id, completed } = todo;
-        client.mutate({
-            mutation: setTodoCompletedMutation,
-            variables: {
-                id,
-                completed: !completed
-            }
-        });
-    };
-    const moment = (tick, todoTimestamp) => {
-        return format(todoTimestamp, 'en_US', { relativeDate: tick });
-    };
-    onMount(() => {
-        const interval = setInterval(() => {
-            time = Date.now();
-        }, REFRESH_INTERVAL);
-        return () => {
-            clearInterval(interval);
-        };
-    });
+    // const toggleTodoCompleted = (todo) => {
+    //     const { id, completed } = todo;
+    //     client.mutate({
+    //         mutation: setTodoCompletedMutation,
+    //         variables: {
+    //             id,
+    //             completed: !completed
+    //         }
+    //     });
+    // };
+    // const moment = (tick, todoTimestamp) => {
+    //     return format(todoTimestamp, 'en_US', { relativeDate: tick });
+    // };
+    // onMount(() => {
+    //     const interval = setInterval(() => {
+    //         time = Date.now();
+    //     }, REFRESH_INTERVAL);
+    //     return () => {
+    //         clearInterval(interval);
+    //     };
+    //     searchHistory.useLocalStorage();
+    //     fetch(api.tokenUrl, {
+    //   "method": "POST",
+    //   "headers": { "Content-Type": "application/json" },
+    //   "body": `{"username":"${api.user}","password":"${api.pass}"}`
+    // })
+    //   .then(res => res.json())
+    //   .then(data => $appStore.token = data);
+    // });
   
   </script>
   
   <main class="todo-container">
     <nav>
       <div>
-        <h1 class="heading">Todos - {new Date(time).toLocaleString()}</h1>
+
+        <!-- <h1 class="heading">Todos - {new Date(time).toLocaleString()}</h1>
         <form on:submit|preventDefault={insertTodo}>
           <label for="todo">Title </label>
           <input
@@ -153,7 +171,11 @@
             >
           </div>
         {/each}
-      {/if}
+      {/if} -->
+
+      <!-- <VehicleSelect /> -->
+
+
     </div>
   </main>
   <!-- 
