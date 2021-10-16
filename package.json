@@ -33,7 +33,10 @@
 		"graphql-tag": "2.12.5",
 		"subscriptions-transport-ws": "0.9.19",
 		"timeago.js": "4.0.2",
-		"ws": "7.5.2"
+		"ws": "7.5.2",
+		"svelte-apollo-client": "0.1.4",
+		"svelte-select": "^4.4.3",
+		"svelte-headroom": "^2.2.1"
 	},
 	"type": "module",
 	"dependencies": {}
