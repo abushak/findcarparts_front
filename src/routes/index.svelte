@@ -1,15 +1,19 @@
+<script context='module'>
+  
+	export const prerender = true;
+</script>
+
 <script>
-    import { gql } from '@apollo/client/core/core.cjs.js';
-    import { client } from '$lib/graphql-client';
-    //import VehicleSelect from '$lib/components/VehicleSelect.svelte';
-    import { appStore, searchHistory, vehicle } from '$lib/store';
+   
+  
+  import { appStore, searchHistory, vehicle } from '$lib/store';
+  import VehicleSelect from '$lib/components/VehicleSelect.svelte';
+  import { onMount } from 'svelte';
 
-    import { format } from 'timeago.js';
-    import { onMount } from 'svelte';
+  
 
 
-
-    import { getClient } from "svelte-apollo";
+   
 
     
 
@@ -124,56 +128,11 @@
   
   </script>
   
-  <main class="todo-container">
-    <nav>
+  <main class="">
+  
       <div>
 
-        <!-- <h1 class="heading">Todos - {new Date(time).toLocaleString()}</h1>
-        <form on:submit|preventDefault={insertTodo}>
-          <label for="todo">Title </label>
-          <input
-            id="todo"
-            placeholder="Enter todo title..."
-            bind:value={newTodo.title}
-            type="text"
-            class="border border-gray-500 focus:outline-none focus:ring focus:border-blue-300"
-          />
-          <label for="completed"
-            >Completed: <input
-              id="completed"
-              type="checkbox"
-              bind:checked={newTodo.completed}
-              class="rounded text-gray-500"
-            /></label
-          >
-          <button
-            type="submit"
-            class="button"
-            title={newTodo.title === '' && 'Title is required'}
-            disabled={newTodo.title === ''}>Submit</button
-          >
-        </form>
-      </div>
-    </nav>
-  
-    <div>
-      {#if !$todos}
-        <div>Loading todos...</div>
-      {:else if $todos.data}
-        {#each $todos.data.todo as todo (todo.id)}
-          <div on:click={() => toggleTodoCompleted(todo)} class="todo-item">
-            <div class={`todo-item-title ${todo.completed ? 'done' : 'open'}`}>{todo.title}</div>
-            <span class="todo-timestamp" title={new Date(todo['created_at']).toISOString()}>
-              {moment(refreshTimeStamp, todo['created_at'])}
-            </span>
-            <button class="button" title={`delete ${todo.title}`} on:click={() => deleteTodo(todo.id)}
-              >x</button
-            >
-          </div>
-        {/each}
-      {/if} -->
-
-      <!-- <VehicleSelect /> -->
+       <VehicleSelect />
 
 
     </div>

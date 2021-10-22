@@ -1,23 +1,16 @@
-import { get, readable, writable } from 'svelte/store';
-import { query } from 'svelte-apollo';
-import { BRAND_TYPES } from './queries';
-import makes from './data/makes';
+import { get, readable, writable, derived } from 'svelte/store';
+//import { query } from 'svelte-apollo';
+//import { BRAND_TYPES } from './queries';
+//import makes from './data/makes';
 import categories from './data/categories';
 import subcategories from './data/subcategories';
-import { getClient } from 'svelte-apollo';
+import { browser } from '$app/env';
 
 
 export const appStore = writable({
   search: false,
   advancedSearch : false,
   token: {}
-});
-
-export const carAttributes = writable({
-  make: undefined,
-  model: undefined,
-  year: undefined,
-  engine: undefined
 });
 
 export const searchParams = writable({
@@ -79,40 +72,64 @@ export const doPolling = writable(false);
 export const pollerRandom = writable(0);
 export const firstResultsAvailable = writable(false);
 
-export const carMakes = writable(makes);
-export const carModels = writable([]);
-export const carYears = writable([]);
-export const carEngines = writable([]);
-export const carCategories = writable(categories);
-export const carSubcategories = writable(subcategories);
+// export const carMakes = (makes);
+
+// const storedMakes = JSON.parse(browser && localStorage.getItem("carMakes");
+// export const carMakes = writable(browser && carMakes);
+// makes.subscribe(
+//   (val) => browser && (localStorage.makes = JSON.stringify(val))
+// );
+
+// export const carMakes = JSON.parse(browser && localStorage.getItem(makes))
+// export const makes = writable(browser && carMakes);
+//  carMakes.subscribe((val) => browser && (localStorage.makes = JSON.stringify(val)));
+
+export const Make = writable(
+  browser && (localStorage.getItem("Make"))
+);
+Make.subscribe((val) => browser && (localStorage.Make = val));
+
+//export const carMakes = (makes);
+export const Model = writable([]);
+export const Year = writable([]);
+export const Engine = writable([]);
+// export const carCategories = writable(categories);
+// export const carSubcategories = writable(subcategories);
+export const Category = writable([]);
+export const Subcategor = writable([]);
 
 export const vehicle = writable({
-  make: undefined,
-  model: undefined,
-  year: undefined,
-  engine: undefined,
-  category: undefined,
-  subcategory: undefined
+  Make: undefined,
+  Model: undefined,
+  Year: undefined,
+  Engine: undefined,
+  Submodel: undefined,
+  Bodytype: undefined,
+  Category: undefined,
+  Subcategory: undefined,
+  Parttype: undefined,
 });
 
-export const filtersConfiguration = readable(
-  { brandTypes: null },
-  function start(set) {
-    if (get(filtersConfiguration).brandTypes === null) {
-      const brandTypes = query(BRAND_TYPES);
-      brandTypes.result().then(res => {
-        set({ brandTypes: res.data.ebay_brandtype });
-        const activeByDefault = res.data.ebay_brandtype.filter(item => item.active_default).map(item => item.id);
-        apiSearchParams.set({ brandTypes: activeByDefault })
-      }).catch((err) => {
-        console.error(err);
-        set({ brandTypes: [] });
-        apiSearchParams.set({ brandTypes: [] })
-      });
-    }
-    return function stop() { };
-  }
-);
+
+
+// export const filtersConfiguration = readable(
+//   { brandTypes: null },
+//   function start(set) {
+//     if (get(filtersConfiguration).brandTypes === null) {
+//       const brandTypes = query(BRAND_TYPES);
+//       brandTypes.result().then(res => {
+//         set({ brandTypes: res.data.ebay_brandtype });
+//         const activeByDefault = res.data.ebay_brandtype.filter(item => item.active_default).map(item => item.id);
+//         apiSearchParams.set({ brandTypes: activeByDefault })
+//       }).catch((err) => {
+//         console.error(err);
+//         set({ brandTypes: [] });
+//         apiSearchParams.set({ brandTypes: [] })
+//       });
+//     }
+//     return function stop() { };
+//   }
+// );
 
 function createSearchHistory() {
   const { subscribe, set, update } = writable([]);

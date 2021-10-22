@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import { carSubcategories, vehicle } from '$lib/store';
   import { Row, Column, Search, Button } from "carbon-components-svelte";
+  import makes from '../data/makes';
 
   const dispatch = createEventDispatcher();
 

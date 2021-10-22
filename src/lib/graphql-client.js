@@ -1,5 +1,6 @@
-import { InMemoryCache } from '@apollo/client/core/core.cjs.js';
-
+//import { InMemoryCache } from "@apollo/client/core/core.cjs.js";
+//import { InMemoryCache } from "@apollo/client/core";
+import { InMemoryCache } from '@apollo/client/cache/cache.cjs.js';
 import { SvelteApolloClient } from "svelte-apollo-client";
 
 export const client = SvelteApolloClient({

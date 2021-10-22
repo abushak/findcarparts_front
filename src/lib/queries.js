@@ -1,4 +1,26 @@
-import { gql } from '@apollo/client/core/core.cjs.js';
+import { client } from '$lib/graphql-client';
+import { gql } from "@apollo/client/core/core.cjs.js";
+
+//--------------------------------------------------------------------------
+
+export function allMakes() {
+	makes = client.query(gql`
+		  query allMakes {
+			uvdb {
+			  search_uvdb_makes {
+				cursor {
+				  total
+				}
+				items {
+				  name
+				  id
+				}
+			  }
+			}
+		}
+	`);
+  }
+
 
 // -------------------------------------------------------------------------
 export const BRAND_TYPES = gql`
@@ -11,18 +33,38 @@ export const BRAND_TYPES = gql`
   }
 `;
 // -------------------------------------------------------------------------
+
+
+
+// let models;
+
+// export function getModels() {
+//    models = client.query( gql`
+//  	query GetModels ($makeId: ID!) {
+//    	uvdb {
+//      	search_uvdb_models( uvdb_make_id: $makeId, limit: 500 ) {
+//        	items {
+//          	id
+//          	name
+//  					}
+//  				}
+//  			}
+//  		}
+//      `);
+//  }
+
 export const MODELS = gql`
-  query getModels($makeId: ID!) {
-  	uvdb {
-    	search_uvdb_models( uvdb_make_id: $makeId, limit: 500 ) {
-      	items {
-        	id
-        	name
-      	}
-    	}
+    query getModels($makeId: ID!) {
+    	uvdb {
+      	search_uvdb_models( uvdb_make_id: $makeId, limit: 500 ) {
+        	items {
+          	id
+          	name
+        			}
+      		}
+    		}
   	}
-	}
-`;
+  `;
 // -------------------------------------------------------------------------
 export const YEARS = gql`
 	query getYears($makeId: ID!, $modelId: ID!) {

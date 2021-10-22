@@ -1,4 +1,8 @@
-let makes = [
+{
+  "data": {
+    "uvdb": {
+      "search_uvdb_makes": {
+        "items": [
   {
     "id": "UMAK1359",
     "name": "Acura"
@@ -255,6 +259,8 @@ let makes = [
     "id": "UMAK2278",
     "name": "Spyker"
   }
-];
-
-export default makes;
+]
+}
+}
+}
+}
