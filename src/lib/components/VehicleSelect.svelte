@@ -1,8 +1,8 @@
 <script>
   import { gql } from "@apollo/client/core/core.cjs.js";
   // /home/rubuc/web/apps/svelte-kit-intro/node_modules/svelecte/src/Svelecte.svelte
-  //import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
-  //import { Svelecte, config, registerSvelecte } from 'svelecte';
+  import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
+ // import { Svelecte } from 'svelecte';
   import { client } from '$lib/graphql-client';
  // import { getClient } from "svelte-apollo";
   // import { get } from 'svelte/store';
@@ -11,7 +11,7 @@
   import makes from '../data/makes';
   //import { query } from "svelte-apollo";
   
-  import { config, registerSvelecte } from 'svelecte/component';
+ // import { config, registerSvelecte } from 'svelecte/component';
   //const { registerSvelecte, addFormatter, config } = window.Svelecte;
   //import { config, registerSvelecte } from '../../../node_modules/svelecte/component.js';
   
@@ -26,9 +26,9 @@
   // let engines;
   
   
-  onMount(async () => {
-      ValidationMessage = ValidationMessageSSR
-})
+//   onMount(async () => {
+//       ValidationMessage = ValidationMessageSSR
+// })
   const models = client.query(MODELS, { variables: { makeId: "" } });
   const years = client.query(YEARS, { variables: { makeId: "", modelId: "" } });
   const engines = client.query(ENGINES, { variables: { makeId: "", modelId: "", yearId: "" } });
@@ -126,9 +126,9 @@
 
 
   let payload = null;
-  config.clearable = true;
+  // config.clearable = true;
   
-    registerSvelecte('el-svelecte');
+  //   registerSvelecte('el-svelecte');
     
 
  
@@ -138,7 +138,7 @@
     
    
     const object = {};
-    const el = document.createElement('el-svelecte');
+
    
     const formData = new FormData(e.target);
     formData.forEach((value, key) => {
@@ -154,52 +154,36 @@
 
 </script>
 
-<!-- 
+
 <form action="" on:submit|preventDefault={onSubmit}>
   <Svelecte bind:value={$Make}
-    name="parent_value" placeholder="Select parent value"
+    name="parent_value" placeholder="make"
     options={makes}
     searchable=True
     clearable=True
-    
+    fetchCallback { makeSelected }
     id="is-parent" required>
 
   </Svelecte> 
   <Svelecte 
     name="child_value" parent="is-parent"
-    required placeholder="Pick from child select"
+    required placeholder="model"
     searchable=True
     clearable=True
-    options={makes}
     fetch={ makeSelected }>
     
   </Svelecte>
-</form> -->
+  <Svelecte 
+    name="child_value" parent="is-parent"
+    required placeholder="year"
+    searchable=True
+    clearable=True
+    fetch={ makeSelected }>
+</Svelecte>
 
 
-<form action="" on:submit|preventDefault={onSubmit}>
-  <el-svelecte
-    name="parent_value" placeholder="Select parent value"
-    options={`[{"value":"posts","text":"Posts"},{"value":"users","text":"Users"},{"value":"comments","text":"Comments"}]`}
-    id="is-parent" required>
-  </el-svelecte>
-  <el-svelecte name="child_value" parent="is-parent" required placeholder="Pick from child select"
-    fetch="https://jsonplaceholder.typicode.com/[parent]">
-  </el-svelecte>
-  <!-- server-side rendered -->
-  <div>Server-side rendered inner select:</div>
-  <el-svelecte options={`[{"id":"posts","label":"Posts", "prop": "Posts"},{"id":"users","label":"Users", "prop": "Users"},{"id":"comments","label":"Comments", "prop": "Comment"}]`}
-    style="margin-bottom: 0"
-    lazy-dropdown="false"
-  >
-    <select id="anchored" name="demo" multiple on:change={e => console.log(e.target.selectedOptions)}></select>
-  </el-svelecte>
-  <small>This <code>&lt;el-svelecte&gt;</code> has nested (anchored) <code>&lt;select&gt;</code>, when you <em>need</em> to have it rendered server-side. This setup is specific, 
-    because inner select needs to have <code>name</code> and <code>required</code> (if applicable) properties specified manually. (They are not inherited from el-svelecte parent)</small>
-  <div class="mt-2">
-    <button type="submit" class="btn btn-success">Send form</button>
-  </div>
-  {#if payload}
+    {#if payload}
     <pre>{payload}</pre>
   {/if}
 </form>
+

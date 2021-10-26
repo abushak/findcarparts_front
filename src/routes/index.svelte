@@ -1,5 +1,5 @@
 <script context='module'>
-  
+   import VehicleSelect from '$lib/components/VehicleSelect.svelte';
 	export const prerender = true;
 </script>
 
@@ -7,7 +7,7 @@
    
   
   import { appStore, searchHistory, vehicle } from '$lib/store';
-  import VehicleSelect from '$lib/components/VehicleSelect.svelte';
+ 
   import { onMount } from 'svelte';
 
   
