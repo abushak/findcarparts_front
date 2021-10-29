@@ -1,0 +1,144 @@
+
+      /* sm */
+      @media (min-width: 300px) and (max-width: 639px) {
+        main {
+          padding-bottom: 40px;
+        }
+        .features-item {
+            min-height:95px;
+        }
+        .tabs-one [class^="tab"] label, .tabs-one [class*=" tab"] label {
+          font-size: 1.3rem;
+        }
+          .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
+              width: 70%;
+              margin-left: 15%;
+          }
+          .tabs-second [class^=tab] [type=radio]:checked, .tabs-second [class*=" tab"] [type=radio]:checked {
+              width: 70%;
+              margin-left: 15%;
+          }
+          .bx--side-nav__overlay-active {
+              z-index: 1 !important;
+            }
+
+       
+      
+      }
+      /* md */    
+      @media (min-width: 640px) and (max-width: 767px) {
+            .features .features-item .features-extended {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+            span, .features-item:hover>div {
+                display: block;
+            
+            }
+            
+            .features-item {
+                min-height:75px;
+            }
+                .sv-dropdown {
+                max-height: 170px;
+            }
+            .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
+                width: 30%;
+                margin-left: 35%;
+            }
+            .tabs-second [class^=tab] [type=radio]:checked, .tabs-second [class*=" tab"] [type=radio]:checked {
+                width: 30%;
+                margin-left: 35%;
+            }
+            .bx--side-nav__overlay-active {
+              z-index: 1 !important;
+            }
+            
+         
+      } 
+      /* lg */   
+      @media (min-width: 768px) and (max-width: 1023px) {
+            .features .features-item .features-extended {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+            span, .features-item:hover>div {
+                display: block;
+            
+            }  
+            .sv-dropdown{
+                max-height: 170px;
+            }
+            
+            .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
+                width: 25%;
+                margin-left: 37%;
+            }
+            .tabs-second [class^=tab] [type=radio]:checked, .tabs-second [class*=" tab"] [type=radio]:checked {
+                width: 25%;
+                margin-left: 37%;
+            }
+            .bx--side-nav__overlay-active {
+                z-index: 1 !important;
+            }
+          
+         
+          
+        
+      }
+      
+      /* xlg */   
+      
+      @media (min-width: 1024px) and (max-width: 1279px) {
+            .features .features-item .features-extended {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+            span, .features-item:hover>div {
+                display: block;
+            
+            }
+            .sv-dropdown{
+                max-height: 170px;
+            }
+     
+            .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
+                width: 30%;
+                margin-left: 35%;
+            }
+            .tabs-second [class^=tab] [type=radio]:checked, .tabs-second [class*=" tab"] [type=radio]:checked {
+                width: 30%;
+                margin-left: 35%;
+            }
+      
+      }
+      
+      /* max */
+      @media (min-width: 1280px) {
+        span, .features-item:hover>div {
+            display: block;
+        
+        }
+
+        .features .features-item .features-extended {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .sv-dropdown {
+            max-height: 170px;
+        }
+      
+        .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
+            width: 30%; 
+            margin-left: 35%;
+        }
+        .tabs-second [class^=tab] [type=radio]:checked, .tabs-second [class*=" tab"] [type=radio]:checked {
+            width: 30%; 
+            margin-left: 35%;
+        }
+        .bx--side-nav__overlay-active {
+            z-index: 1 !important;
+        }
+       
+      
+      }
