@@ -188,6 +188,16 @@
           clearable=True
           fetch={ makeSelected }>
         </Svelecte>
+      </div>
+      <div class="flex-1 car-attrib ">
+        <Svelecte bind:value={$Make}
+          name="parent_value" placeholder="submodels"
+          options={makes}
+          searchable=True
+          clearable=True
+          fetchCallback { makeSelected }
+          id="is-parent" required>
+        </Svelecte>
       </div> 
       {#if payload}
       <pre>{payload}</pre>
@@ -196,19 +206,8 @@
 </div>
 <div class="attrib-specify">
   <div class="attrib-details">
-    <label>we found <span>165 car instances</span>, you can choose more car attributes to make this range smaller</label>
+    <label clss="q-ty varning">we found <span>165 car instances</span>, you can choose more car attributes to reduce this number</label>
     <form action="" on:submit|preventDefault={onSubmit} class="engine-submodel-body sm:flex-none md:flex justify-center">
-     
-        <div class="flex-1 car-attrib ">
-          <Svelecte bind:value={$Make}
-            name="parent_value" placeholder="submodels"
-            options={makes}
-            searchable=True
-            clearable=True
-            fetchCallback { makeSelected }
-            id="is-parent" required>
-          </Svelecte>
-        </div>
         <div class="flex-1 car-attrib">
           <Svelecte 
             name="parent_value" placeholder="engine"
@@ -220,8 +219,29 @@
           </Svelecte>
         </div>
         <div class="flex-1 car-attrib">
-          <Svelecte
+          <Svelecte 
             name="parent_value" placeholder="body type"
+            options={makes}
+            searchable=True
+            clearable=True
+            fetchCallback
+            id="is-parent" required>
+          </Svelecte>
+        </div>
+      
+        <div class="flex-1 car-attrib">
+          <Svelecte 
+            name="parent_value" placeholder="fuel type"
+            options={makes}
+            searchable=True
+            clearable=True
+            fetchCallback
+            id="is-parent" required>
+          </Svelecte>
+        </div>
+        <div class="flex-1 car-attrib">
+          <Svelecte
+            name="parent_value" placeholder="drive type "
             options={makes}
             searchable=True
             clearable=True
