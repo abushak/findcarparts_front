@@ -4,9 +4,30 @@
         main {
           padding-bottom: 40px;
         }
-        .features-item {
-            min-height:95px;
-        }
+        span, .features-item:hover>div {
+            display: none;
+          
+          }
+          
+          .features-item:hover>span {
+            display: block;
+          }
+
+        .features {
+            .features-item { 
+                    padding-left: 35%;
+                    padding-right: 35%;
+                    min-height:97px
+            }
+            /* .features-extended {
+                    padding-left: 0%;
+                    padding-right: 0%;
+                    margin-top: 0px;
+             } */
+            
+            margin-top:80px;
+        }    
+      
         .tabs-one [class^="tab"] label, .tabs-one [class*=" tab"] label {
           font-size: 1.3rem;
         }
@@ -27,21 +48,38 @@
       }
       /* md */    
       @media (min-width: 640px) and (max-width: 767px) {
-            .features .features-item .features-extended {
-                padding-left: 10%;
-                padding-right: 10%;
-            }
             span, .features-item:hover>div {
                 display: block;
             
             }
+          
+            .features-item:hover>span {
+                display: block;
+            }
+
+            main {
+                padding-bottom: 100px;
+                padding-top: 100px;
+            }
+            .features {
+                .features-item { 
+                        padding-left: 25%;
+                        padding-right: 25%;
+                        height:110px;
+                }
+              
+                
+                margin-top:110px;
+            }    
+
+            span, .features-item:hover>div {
+                display: block;
+              
+              }
+           
+
             
-            .features-item {
-                min-height:75px;
-            }
-                .sv-dropdown {
-                max-height: 170px;
-            }
+         
             .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
                 width: 30%;
                 margin-left: 35%;
@@ -58,18 +96,22 @@
       } 
       /* lg */   
       @media (min-width: 768px) and (max-width: 1023px) {
-            .features .features-item .features-extended {
-                padding-left: 10%;
-                padding-right: 10%;
+            main {
+                padding-bottom: 100px;
+                padding-top: 100px;
             }
-            span, .features-item:hover>div {
-                display: block;
-            
-            }  
-            .sv-dropdown{
-                max-height: 170px;
-            }
-            
+            .features {
+                .features-item { 
+                        padding-left: 20%;
+                        padding-right: 20%;
+                        height:110px;
+                }
+              
+                
+                margin-top:100px;
+            }    
+          
+        
             .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
                 width: 25%;
                 margin-left: 37%;
@@ -90,18 +132,27 @@
       /* xlg */   
       
       @media (min-width: 1024px) and (max-width: 1279px) {
-            .features .features-item .features-extended {
-                padding-left: 10%;
-                padding-right: 10%;
+            main {
+                padding-bottom: 100px;
+                padding-top: 100px;
             }
+            .features {
+                .features-item { 
+                        padding-left: 20%;
+                        padding-right: 20%;
+                        height:110px;
+                }
+              
+                
+                margin-top:120px;
+            }    
+              
+
             span, .features-item:hover>div {
                 display: block;
             
             }
-            .sv-dropdown{
-                max-height: 170px;
-            }
-     
+         
             .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
                 width: 30%;
                 margin-left: 35%;
@@ -120,14 +171,17 @@
         
         }
 
-        .features .features-item .features-extended {
-            padding-left: 10%;
-            padding-right: 10%;
+        .features {
+            .features-item { 
+                    padding-left: 15%;
+                    padding-right: 15%;
+                    height:110px;
+            }
+          
+            
+            margin-top:120px;
+        
         }
-        .sv-dropdown {
-            max-height: 170px;
-        }
-      
         .tabs-one [class^=tab] [type=radio]:checked, .tabs-one [class*=" tab"] [type=radio]:checked {
             width: 30%; 
             margin-left: 35%;

@@ -10,6 +10,7 @@
 	},
 	"devDependencies": {
 		"@apollo/client": "3.4.10",
+		"@felte/reporter-svelte": "^0.3.17",
 		"@sveltejs/adapter-static": "^1.0.0-next.21",
 		"@sveltejs/adapter-vercel": "^1.0.0-next.30",
 		"@sveltejs/kit": "next",
@@ -27,6 +28,7 @@
 		"graphql-request": "^3.5.0",
 		"graphql-tag": "2.12.5",
 		"postcss": "^8.3.11",
+		"postcss-import": "^14.0.2",
 		"postcss-load-config": "^3.1.0",
 		"postcss-nested": "^5.0.6",
 		"postcss-nesting": "^8.0.1",
@@ -40,18 +42,16 @@
 		"svelte": "^3.44.0",
 		"svelte-apollo": "^0.4.0",
 		"svelte-apollo-client": "0.1.4",
+		"svelte-carousel": "^1.0.16",
 		"svelte-headroom": "^2.2.1",
 		"svelte-preprocess": "^4.9.8",
 		"svelte-select": "^4.4.3",
+		"svelte-tiny-virtual-list": "^1.1.7",
 		"tailwindcss": "^2.2.16",
 		"theme-change": "^2.0.2",
 		"timeago.js": "4.0.2",
 		"vite-plugin-svelte-ssr-hot": "^8.0.2",
 		"ws": "7.5.2"
 	},
-	"type": "module",
-	"dependencies": {
-		"@felte/reporter-svelte": "^0.3.17",
-		"postcss-import": "^14.0.2"
-	}
+	"type": "module"
 }

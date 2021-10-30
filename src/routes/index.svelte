@@ -9,6 +9,7 @@
   import { appStore, searchHistory, vehicle } from '$lib/store';
  
   import { onMount } from 'svelte';
+import Affiliates from '$lib/components/Affiliates.svelte';
 
   
   
@@ -39,13 +40,17 @@
         search by Parts#
         </div>
       </div>
+      <div class="features flex-none  pt-100 justify-center">
+        <Features />
+      </div>
     </div>
     
     
-    <div class="features flex-none  pt-100 justify-center">
-      <Features />
-    </div>
+    
  
+    <div class="affiliates flex  pt-100 justify-center">
+      <Affiliates />
+    </div>
        
 
 

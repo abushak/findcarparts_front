@@ -194,10 +194,12 @@
     {/if}
   </form>
 </div>
+<div class="attrib-specify">
   <div class="attrib-details">
+    <label>we found <span>165 car instances</span>, you can choose more car attributes to make this range smaller</label>
     <form action="" on:submit|preventDefault={onSubmit} class="engine-submodel-body sm:flex-none md:flex justify-center">
      
-        <div class="flex-1 car-attrib">
+        <div class="flex-1 car-attrib ">
           <Svelecte bind:value={$Make}
             name="parent_value" placeholder="submodels"
             options={makes}
@@ -208,22 +210,22 @@
           </Svelecte>
         </div>
         <div class="flex-1 car-attrib">
-          <Svelecte bind:value={$Make}
+          <Svelecte 
             name="parent_value" placeholder="engine"
             options={makes}
             searchable=True
             clearable=True
-            fetchCallback { makeSelected }
+            fetchCallback
             id="is-parent" required>
           </Svelecte>
         </div>
         <div class="flex-1 car-attrib">
-          <Svelecte bind:value={$Make}
+          <Svelecte
             name="parent_value" placeholder="body type"
             options={makes}
             searchable=True
             clearable=True
-            fetchCallback { makeSelected }
+            fetchCallback 
             id="is-parent" required>
     
           </Svelecte>
@@ -237,7 +239,7 @@
     </form>
 
        
-        <label>we found <span>165 car instances</span>,you can choose more car attributes to make this range smaller</label>
+    
     
     
 
@@ -256,3 +258,4 @@
     </button> 
 
   </div>
+</div>

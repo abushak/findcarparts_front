@@ -41,7 +41,6 @@ select:focus {
   -moz-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-top: 50px;
-  padding-bottom: 105px;
   overflow: hidden;
    }
   .tabs-one [class^="tab"] label,
@@ -116,19 +115,13 @@ select:focus {
      .svelecte {
        min-width: 110px;
      }
-     .sv-dropdown {
-      max-height: 170px !important;
-     }
+ 
+     
      .basic-attrib {
       padding:10px;  
      }
 
-     .attrib-details {
-       label {
-        color: #959595;
-        font-weight: 300;
-       }
-     }
+   
     main {
       padding-bottom: 100px;
     } 
@@ -139,9 +132,11 @@ select:focus {
       border-radius: 10px;
 
        label {
-         font-size: 1rem !important;
-         color: #959595 !important;
-         font-weight: 300 !important;
+        font-size: 1rem !important;
+        color: #959595 !important;
+        font-weight: 300 !important;
+        margin-bottom: 7px;
+        line-height:1em !important;
 
          span {color:#009485;display: contents;}
        }
@@ -153,9 +148,17 @@ select:focus {
   
     .sv-control {
       background-color: white;
-      border: 1px solid #eee !important;
+      border: 1px solid #dee4e4 !important;
     } 
-
+    .attrib-specify {
+      .sv-control {
+        background-color: white;
+        border: 1px solid #eee !important;
+      } 
+    }
+    .divider:not(:empty):before,.divider:not(:empty):after {
+      background-color: #e8e8e8;
+    }
     .show-car-inst { 
         .show-car {
           width: 99%;
@@ -187,21 +190,29 @@ select:focus {
   .features-item {
     h3{
       line-height: 18px;
-      padding: 10px;
+     
       text-align: center;
     }
     .features-extended {
-      color:#009485;
+      color: #000000;
+      font-weight: 300;
     }
     /* cursor: pointer; */
   }
+  
+    
 }
 
-span, .features-item:hover>div {
-	display: none;
 
-}
 
-.features-item:hover>span {
-	display: block;
-}
+
+/* featured products */
+.affiliates {
+ 
+  .featured-products {
+    margin-top: 30px;
+  }
+  .goodyear-aff-link {
+    img {height:73.5%;}
+  }
+}  
