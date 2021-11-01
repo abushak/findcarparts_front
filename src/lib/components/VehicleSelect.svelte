@@ -2,7 +2,7 @@
   import { gql } from "@apollo/client/core/core.cjs.js";
   // /home/rubuc/web/apps/svelte-kit-intro/node_modules/svelecte/src/Svelecte.svelte
   import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
-  //import { Svelecte } from 'svelecte';
+  //  import { Svelecte } from 'svelecte';
   import { client } from '$lib/graphql-client';
  // import { getClient } from "svelte-apollo";
   // import { get } from 'svelte/store';
@@ -260,7 +260,7 @@
 
        
     
-    
+    </div>
     
 
   
@@ -278,4 +278,3 @@
     </button> 
 
   </div>
-</div>
