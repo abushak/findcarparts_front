@@ -1,22 +1,21 @@
-import { Client, setDefaultClient } from "micro-graphql-svelte";
+// import { Client, setDefaultClient } from "micro-graphql-svelte";
 
-const client = new Client({
-  endpoint: "https://api.findcar.parts/v1/graphql",
-  fetchOptions: { credentials: "include" }
-});
-
-setDefaultClient(client);
-
-
-// //import { InMemoryCache } from "@apollo/client/core/core.cjs.js";
-// import { InMemoryCache } from "@apollo/client/core";
-// //import { InMemoryCache } from '@apollo/client/cache/cache.cjs.js';
-// import { SvelteApolloClient } from "svelte-apollo-client";
-
-// export const client = SvelteApolloClient({
-//   uri: "https://api.findcar.parts/v1/graphql",
-//   cache: new InMemoryCache(),
+// const client = new Client({
+//   endpoint: "https://api.findcar.parts/v1/graphql",
+//   fetchOptions: { credentials: "include" }
 // });
+
+// setDefaultClient(client);
+
+
+//import { InMemoryCache } from "@apollo/client/core";
+import { InMemoryCache } from '@apollo/client/cache/cache.cjs.js';
+import { SvelteApolloClient } from "svelte-apollo-client";
+
+ export const client = SvelteApolloClient({
+   uri: "https://api.findcar.parts/v1/graphql",
+   cache: new InMemoryCache(),
+});
 
 
 

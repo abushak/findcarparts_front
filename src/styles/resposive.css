@@ -1,6 +1,15 @@
 
       /* sm */
       @media (min-width: 300px) and (max-width: 639px) {
+        .left-100,.left-200 {
+            width:90%;
+        }  
+        .divider {
+            margin-bottom: 1rem;
+          }
+        .aff-desktop {
+            display: none;
+        } 
         main {
           padding-bottom: 40px;
         }
@@ -19,14 +28,24 @@
                     padding-right: 35%;
                     min-height:97px
             }
-            /* .features-extended {
-                    padding-left: 0%;
-                    padding-right: 0%;
+            .features-extended {
+                    margin-left: 10%;
+                    margin-right: 10%;
                     margin-top: 0px;
-             } */
+             }
+             margin-top:80px;
             
-            margin-top:80px;
-        }    
+        } 
+
+        
+        /* .tabs-one [class^=tab] [type=radio]:checked,
+        .tabs-one [class*=" tab"] [type=radio]:checked
+         {
+            .tab-2 ,.tab-3 {
+                height:200px !important;
+            }
+        
+        } */
       
         .tabs-one [class^="tab"] label, .tabs-one [class*=" tab"] label {
           font-size: 1.3rem;
@@ -48,6 +67,15 @@
       }
       /* md */    
       @media (min-width: 640px) and (max-width: 767px) {
+            .left-100,.left-200 {
+                width:90%;
+            }
+            .aff-mob {
+                display: none;
+            }
+            .aff-desktop {
+                display: flex;
+            } 
             span, .features-item:hover>div {
                 display: block;
             
@@ -96,6 +124,13 @@
       } 
       /* lg */   
       @media (min-width: 768px) and (max-width: 1023px) {
+        
+        .left-100,.left-200 {
+            width:90%;
+        }
+        .aff-mob {
+            display: none;
+        }
             main {
                 padding-bottom: 100px;
                 padding-top: 100px;
@@ -132,6 +167,12 @@
       /* xlg */   
       
       @media (min-width: 1024px) and (max-width: 1279px) {
+        .left-100,.left-200 {
+            width:90%;
+        }
+            .aff-mob {
+                display: none;
+            }
             main {
                 padding-bottom: 100px;
                 padding-top: 100px;
@@ -163,9 +204,15 @@
             }
       
       }
-      
+        
       /* max */
       @media (min-width: 1280px) {
+        .left-100,.left-200 {
+            width:80%;
+        }
+        .aff-mob {
+            display: none;
+        }
         span, .features-item:hover>div {
             display: block;
         

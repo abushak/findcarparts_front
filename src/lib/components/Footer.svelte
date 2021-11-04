@@ -1,17 +1,17 @@
 <footer class="p-8 footer bg-base-300 text-base-content">
   <div>
-    <span class="footer-title">Services</span> 
-    <a class="link link-hover">Branding</a> 
-    <a class="link link-hover">Design</a> 
-    <a class="link link-hover">Marketing</a> 
-    <a class="link link-hover">Advertisement</a>
+    
+    <a sveltekit:prefetch href="/about">About us</a>
+    <a sveltekit:prefetch href="/contact">Contact us</a>
+    <a sveltekit:prefetch href="/disclaimer">Disclaimer</a>
+    <a sveltekit:prefetch href="/privacy-policy">Privacy policy</a>
   </div> 
   <div>
-    <span class="footer-title">Company</span> 
-    <a class="link link-hover">About us</a> 
-    <a class="link link-hover">Contact</a> 
-    <a class="link link-hover">Jobs</a> 
-    <a class="link link-hover">Press kit</a>
+    
+    <a sveltekit:prefetch href="/search-help">Request data</a>
+    <a sveltekit:prefetch href="/terms-and-conditions">Terms and Conditions</a>
+    <a sveltekit:prefetch href="/help">Help</a>
+    
   </div> 
   <div>
     <span class="footer-title">Social</span> 

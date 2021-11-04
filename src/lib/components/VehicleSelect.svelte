@@ -1,34 +1,57 @@
+<script context="module">
+	import { addFormatter, config, registerSvelecte } from 'svelecte/component.js';
+  import Svelecte from "svelecte";
+	// registerSvelecte('el-svelecte');
+
+  
+	let payload = null;
+
+	function onSubmit(e) {
+	const object = {};
+	const formData = new FormData(e.target);
+	const el = document.createElement('el-svelecte');
+
+	formData.forEach((value, key) => {
+		if (object[key]) {
+		object[key] += ', ' + value;
+		return;
+		}
+		object[key] = value
+	});
+	payload = JSON.stringify(object, null, 2);
+	}
+
+
+
+	export const prerender = true;
+</script>
+
+
 <script>
-  import { gql } from "@apollo/client/core/core.cjs.js";
+  //import { gql } from "@apollo/client/core/core.cjs.js";
   // /home/rubuc/web/apps/svelte-kit-intro/node_modules/svelecte/src/Svelecte.svelte
-  import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
-  //  import { Svelecte } from 'svelecte';
+  //import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
+  
+  //import { Svelecte } from 'svelecte';
+  //import Select from 'svelte-select';
+  
   import { client } from '$lib/graphql-client';
  // import { getClient } from "svelte-apollo";
   // import { get } from 'svelte/store';
   import { appStore, Make, Model, Year, Engine, vehicle } from '$lib/store';
   import { MODELS,YEARS, ENGINES} from "$lib/queries";
-  import makes from '../data/makes';
+  import makes from '../data/makes.js';
+
+  import dataset from '../data/makes.js';
+
   //import { query } from "svelte-apollo";
   
- // import { config, registerSvelecte } from 'svelecte/component';
+  //import { config, registerSvelecte } from 'svelecte/component';
   //const { registerSvelecte, addFormatter, config } = window.Svelecte;
-  //import { config, registerSvelecte } from '../../../node_modules/svelecte/component.js';
+  //import { addFormatter, config, registerSvelecte } from '../../../node_modules/svelecte/component.js';
   
-  import {onMount} from 'svelte';
-  import { ValidationMessage as ValidationMessageSSR } from '@felte/reporter-svelte';
-  //import { config, registerSvelecte } from 'svelect/component.js';
 
-  let ValidationMessage
-  // let makes;
-  // // let models;
-  // let years;
-  // let engines;
-  
-  
-//   onMount(async () => {
-//       ValidationMessage = ValidationMessageSSR
-// })
+
   const models = client.query(MODELS, { variables: { makeId: "" } });
   const years = client.query(YEARS, { variables: { makeId: "", modelId: "" } });
   const engines = client.query(ENGINES, { variables: { makeId: "", modelId: "", yearId: "" } });
@@ -47,32 +70,35 @@
   // $: years .refetch({ makeId: "", modelId: "" } );
 
 
-  function getModels () {
-    const models = client.query(MODELS, {
-      variables: { makeId: "" }
-    });
+  export function getModels () {
+    let makeId = localStorage.getItem("Make");
+    
+    models.refetch({ makeId }) 
+
   }
 
 
 
    export function makeSelected(item) {
-    //vehicle.make = item.detail.selectedItem;
+    
     let makeId = localStorage.getItem("Make");
+
     
     models.refetch({ makeId }) 
         .then(res => {
-          if (res.data && res.data.uvdb.search_uvdb_models.items) {
-            let items = res.data.uvdb.search_uvdb_models.items;
-            let mls = [];
-            for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
-            // carModels.set(mls);
-          }
-        })
-      //   .catch(err => console.error(`error loading models: ${err}`)
-      // );
-      // carYears.set([]);
-      // carEngines.set([]);
-    }
+         if (res.data && res.data.uvdb.search_uvdb_models.items) {
+           let items = res.data.uvdb.search_uvdb_models.items;
+           let mls = [];
+           for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
+           carModels.set(mls);
+         }
+       })
+       .catch(err => console.error(`error loading models: ${err}`)
+     );
+    //  carYears.set([]);
+    //  carEngines.set([]);
+   }
+
 
     function modelRefetch(item) {
       
@@ -125,34 +151,29 @@
    }
 
 
-  let payload = null;
-  // config.clearable = true;
-  
-  //   registerSvelecte('el-svelecte');
-    
-
- 
-
-
-  function onSubmit(e) {
-    
-   
-    const object = {};
-
-   
-    const formData = new FormData(e.target);
-    formData.forEach((value, key) => {
-      if (object[key]) {
-        object[key] += ', ' + value;
-        return;
-      }
-      object[key] = value
-    });
-    payload = JSON.stringify(object, null, 2);
-  }
-
-
 </script>
+
+
+<!-- 
+<form action="" on:submit|preventDefault={onSubmit}>
+  <el-svelecte
+    name="parent_value" placeholder="Select parent value"
+    searchable=True
+    clearable=True
+    options={`[{"value":"posts","text":"Posts"},{"value":"users","text":"Users"},{"value":"comments","text":"Comments"}]`}
+    id="is-parent" required>
+  </el-svelecte>
+  <el-svelecte name="child_value" parent="is-parent" required placeholder="Pick from child select"
+    searchable=True
+    clearable=True
+    fetch="https://jsonplaceholder.typicode.com/[parent]">
+  </el-svelecte>
+
+  {#if payload}
+    <pre>{payload}</pre>
+  {/if}
+</form> -->
+
 
 <div class="attrib-basic">
 
@@ -163,7 +184,7 @@
           options={makes}
           searchable=True
           clearable=True
-          fetchCallback { makeSelected }
+          fetchCallback={ makeSelected }
           id="is-parent" required>
 
         </Svelecte>
@@ -172,10 +193,12 @@
         <Svelecte 
           name="child_value" parent="is-parent"
           required placeholder="model"
-          options={makes}
+         
+          valueAsObject
+          
           searchable=True
           clearable=True
-          fetch={ makeSelected }>
+          >
           
         </Svelecte>
       </div>
@@ -186,7 +209,7 @@
           options={makes}
           searchable=True
           clearable=True
-          fetch={ makeSelected }>
+          >
         </Svelecte>
       </div>
       <div class="flex-1 car-attrib ">
@@ -195,7 +218,7 @@
           options={makes}
           searchable=True
           clearable=True
-          fetchCallback { makeSelected }
+          
           id="is-parent" required>
         </Svelecte>
       </div> 

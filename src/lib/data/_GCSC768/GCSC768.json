@@ -1,0 +1,93 @@
+{
+  "data": {
+    "gapc": {
+      "search_gapc_part_types": {
+        "cursor": {
+          "total": 484
+        },
+        "items": [
+          {
+            "name": "Paint",
+            "id": "GCPT60929"
+          },
+          {
+            "name": "Plow Mount",
+            "id": "GCPT66526"
+          },
+          {
+            "name": "Vinyl Protection Film",
+            "id": "GCPT66575"
+          },
+          {
+            "name": "Paint Sprayer",
+            "id": "GCPT66576"
+          },
+          {
+            "name": "Plastic Repair Kit",
+            "id": "GCPT66577"
+          },
+          {
+            "name": "Sheet Metal Bead Roller",
+            "id": "GCPT66814"
+          },
+          {
+            "name": "Body Filler",
+            "id": "GCPT66900"
+          },
+          {
+            "name": "Snow Plow Assembly",
+            "id": "GCPT66954"
+          },
+          {
+            "name": "Body Panel Shrinking Disc",
+            "id": "GCPT67438"
+          },
+          {
+            "name": "Powdercoating Powder",
+            "id": "GCPT67625"
+          },
+          {
+            "name": "Wheel Masker",
+            "id": "GCPT68976"
+          },
+          {
+            "name": "Paintless Dent Removal Kit",
+            "id": "GCPT69278"
+          },
+          {
+            "name": "Dent Removal Tool",
+            "id": "GCPT69279"
+          },
+          {
+            "name": "Polishing Disc",
+            "id": "GCPT69376"
+          },
+          {
+            "name": "Paint Brush",
+            "id": "GCPT69454"
+          },
+          {
+            "name": "Emery Cloth",
+            "id": "GCPT69455"
+          },
+          {
+            "name": "Application Roller",
+            "id": "GCPT69817"
+          },
+          {
+            "name": "Tubing Notching Tool",
+            "id": "GCPT70111"
+          },
+          {
+            "name": "Paint Mixing Cup",
+            "id": "GCPT70199"
+          },
+          {
+            "name": "Paint Mixing Cup Lid",
+            "id": "GCPT70200"
+          }
+        ]
+      }
+    }
+  }
+}
