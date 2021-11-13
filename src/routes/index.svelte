@@ -56,14 +56,14 @@ import Carousel from '@beyonk/svelte-carousel'
         <div class="parts-sellect-row flex flex-col justify-center">
           <PartsNumb />
          
-          <div class="parts-search flex w-full">
+          <!-- <div class="parts-search flex w-full">
                 <div class="insurify-aff-link"> 
                     <a href="https://mwg.aaa.com/lp/insurance/auto/affiliate?cmp=BAC_Auto_CJ_Affiliate" class="af-link"><img src="/assets/images/auto_insurance.jpg" alt="insurify aff link"/></a>
                 </div>
                 <div class="goodyear-aff-link"> 
                     <a href="https://www.goodyear.com/" class="af-link"><img src="/assets/images/goodyear.jpg" alt="insurify aff link"/></a>
                 </div>
-          </div> 
+          </div>  -->
         </div>
     
       </div>

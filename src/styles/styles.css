@@ -165,10 +165,25 @@ select:focus {
        }
        
      }
-     .car-attrib {
-        padding: 3px;
+
+     .attrib-basic {
+        .car-attrib {
+          min-width:220px;
+          padding: 3px;
+            .is-disabled {
+              .sv-control {
+             
+                border: 0px
+                solid #dee4e4 !important;
+                /*background-color: #dde4e4 !important;*/
+              }
+            } 
+
+        }
     }
-  
+    /* .inputBox {
+      min-width:50px;
+    } */
     .sv-control {
       background-color: white;
       border: 1px solid #dee4e4 !important;
@@ -176,7 +191,7 @@ select:focus {
     .attrib-specify {
       .sv-control {
         background-color: white;
-        border: 1px solid #eee !important;
+        border: 3px solid #dee4e4 !important;
       } 
     }
     .divider:not(:empty):before,.divider:not(:empty):after {
@@ -235,7 +250,8 @@ select:focus {
 /* featured products */
 .parts-search {
   margin-top: 30px;
-  margin-left:-30%;
+  
+  z-index: 10;
   img {width:250px; height:auto;}
 }
 
@@ -298,7 +314,7 @@ select:focus {
 
 div.aff-mob.flex > div > ul  {margin-top:300px;}
 
-
+.car-attrib 
 /*drawer styles*/
 .overflow-y-auto {
   .w-6 {
@@ -338,7 +354,7 @@ div.aff-mob.flex > div > ul  {margin-top:300px;}
 /*Parts# tab*/
 
 .left-100{
-  left:-33%;
+  left:-29%;
   position: relative;
   display: block;
   margin-top:20px;

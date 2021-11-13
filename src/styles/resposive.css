@@ -1,6 +1,15 @@
 
       /* sm */
       @media (min-width: 300px) and (max-width: 639px) {
+        .attrib-basic {
+            .car-attrib {
+                .is-disabled {
+                        .sv-control {
+                          display: none;
+                        }
+                    } 
+                }
+            }        
         .left-100,.left-200 {
             width:90%;
         }  

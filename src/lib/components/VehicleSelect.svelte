@@ -1,229 +1,113 @@
+
 <script context="module">
-	import { addFormatter, config, registerSvelecte } from 'svelecte/component.js';
   import Svelecte from "svelecte";
-	// registerSvelecte('el-svelecte');
+  let payload = null;
+  function onSubmit(e) {
+  const object = {};
 
-  
-	let payload = null;
+  const formData = new FormData(e.target);
+  const el = document.createElement('el-svelecte');
 
-	function onSubmit(e) {
-	const object = {};
-	const formData = new FormData(e.target);
-	const el = document.createElement('el-svelecte');
-
-	formData.forEach((value, key) => {
-		if (object[key]) {
-		object[key] += ', ' + value;
-		return;
-		}
-		object[key] = value
-	});
-	payload = JSON.stringify(object, null, 2);
-	}
-
-
-
-	export const prerender = true;
+  formData.forEach((value, key) => {
+    if (object[key]) {
+    object[key] += ', ' + value;
+      return;
+      }
+      object[key] = value
+    });
+    payload = JSON.stringify(object, null, 2);
+  }
+  // export async function load({ params }) {
+    // 	return await this.get(`.api/${params.makeId}.json`);
+    // }
+  export const prerender = true;
 </script>
+
 
 
 <script>
-  //import { gql } from "@apollo/client/core/core.cjs.js";
-  // /home/rubuc/web/apps/svelte-kit-intro/node_modules/svelecte/src/Svelecte.svelte
-  //import Svelecte from '../../../node_modules/svelecte/src/Svelecte.svelte';
-  
-  //import { Svelecte } from 'svelecte';
-  //import Select from 'svelte-select';
-  
-  import { client } from '$lib/graphql-client';
- // import { getClient } from "svelte-apollo";
-  // import { get } from 'svelte/store';
-  import { appStore, Make, Model, Year, Engine, vehicle } from '$lib/store';
-  import { MODELS,YEARS, ENGINES} from "$lib/queries";
-  import makes from '../data/makes.js';
-
-  import dataset from '../data/makes.js';
-
-  //import { query } from "svelte-apollo";
-  
-  //import { config, registerSvelecte } from 'svelecte/component';
-  //const { registerSvelecte, addFormatter, config } = window.Svelecte;
-  //import { addFormatter, config, registerSvelecte } from '../../../node_modules/svelecte/component.js';
-  
+ 	import makes from '$lib/data/makes.js';
+	import {Make, Model, Year } from '$lib/store';
 
 
-  const models = client.query(MODELS, { variables: { makeId: "" } });
-  const years = client.query(YEARS, { variables: { makeId: "", modelId: "" } });
-  const engines = client.query(ENGINES, { variables: { makeId: "", modelId: "", yearId: "" } });
+	/**
+	 * NOTE: I am comparing store values to text 'null', because you store it in localStorage.
+	 * That should be fixed in $lib/store.js in your export function
+	 * 
+	 * I am using real API endpoints I found in your code to be able to test it properly.
+	 * */ 
 
-  // $: vehicle.make.id = vehicle.make.id || -1;
-  // $: vehicle.model.id = vehicle.model.id || -1;
-  // $: vehicle.year.id = vehicle.year.id || -1;
-  // $: vehicle.engine.id = vehicle.engine.id || -1;
-
-  // bind:selectedIndex={$vehicle.make.id}
-  // bind:selectedIndex={$vehicle.model.id}
-  // bind:selectedIndex={$vehicle.year.id}
-  // bind:selectedIndex={$vehicle.engine.id}
-
-  // $: models .refetch({ makeId: "" });
-  // $: years .refetch({ makeId: "", modelId: "" } );
+	$: model_fetchUrl = $Make && $Make !== 'null'
+		? `https://api.findcar.parts/api/rest/make/${$Make}/models`
+		: null;
+	$: year_fetchUrl = $Model && $Model !== 'null'
+		? `https://api.findcar.parts/api/rest/make/${$Make}/models/${$Model}`
+		: null;
 
 
-  export function getModels () {
-    let makeId = localStorage.getItem("Make");
-    
-    models.refetch({ makeId }) 
-
-  }
-
-
-
-   export function makeSelected(item) {
-    
-    let makeId = localStorage.getItem("Make");
-
-    
-    models.refetch({ makeId }) 
-        .then(res => {
-         if (res.data && res.data.uvdb.search_uvdb_models.items) {
-           let items = res.data.uvdb.search_uvdb_models.items;
-           let mls = [];
-           for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
-           carModels.set(mls);
-         }
-       })
-       .catch(err => console.error(`error loading models: ${err}`)
-     );
-    //  carYears.set([]);
-    //  carEngines.set([]);
-   }
-
-
-    function modelRefetch(item) {
-      
-      models.refetch( {Make} )
-        .then(res => {
-          if (res.data && res.data.uvdb.search_uvdb_models.items) {
-            let items = res.data.uvdb.search_uvdb_models.items;
-            let mls = [];
-            for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
-            carModels.set(mls);
-          }
-        })
-        .catch(err => console.error(`error loading models: ${err}`)
-      );
-      carYears.set([]);
-      carEngines.set([]);
-    }
-
-
-
-   function modelSelected(item) {
-      vehicle.model = item.detail.selectedItem;
-      years.refetch({ makeId: vehicle.make.id, modelId: vehicle.model.id })
-        .then(res => {
-          if (res.data && res.data.uvdb.search_uvdb_years.items) {
-            let items = res.data.uvdb.search_uvdb_years.items;
-            let mls = [];
-            for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
-            carYears.set(mls);
-          }
-        })
-        .catch(err => console.error(`error loading years: ${err}`)
-     );
-      carEngines.set([]);
-    }
-
-  function yearSelected(item) {
-    vehicle.year = item.detail.selectedItem;
-    engines.refetch({ makeId: vehicle.make.id, modelId: vehicle.model.id, yearId: vehicle.year.id })
-        .then(res => {
-          if (res.data && res.data.uvdb.search_uvdb_vehicle_definitions.items) {
-            let items = res.data.uvdb.search_uvdb_vehicle_definitions.items;
-            let mls = [];
-            for (let i=items.length-1; i>=0; i--) mls[i] = { id: items[i].id, text: items[i].name };
-            carEngines.set(mls);
-          }
-        })
-        .catch(err => console.error(`error loading engines: ${err}`)
-      );
-   }
-
+	/**
+	 * Resolve 'items' property from response correctly
+	 * @param resp
+	 */
+	function onFetch(resp) {
+ 
+		if (resp.uvdb.search_uvdb_models) 
+			return resp.uvdb.search_uvdb_models.items;
+		if (resp.uvdb.search_uvdb_years) 
+			return resp.uvdb.search_uvdb_years.items;
+	};
 
 </script>
 
 
-<!-- 
-<form action="" on:submit|preventDefault={onSubmit}>
-  <el-svelecte
-    name="parent_value" placeholder="Select parent value"
-    searchable=True
-    clearable=True
-    options={`[{"value":"posts","text":"Posts"},{"value":"users","text":"Users"},{"value":"comments","text":"Comments"}]`}
-    id="is-parent" required>
-  </el-svelecte>
-  <el-svelecte name="child_value" parent="is-parent" required placeholder="Pick from child select"
-    searchable=True
-    clearable=True
-    fetch="https://jsonplaceholder.typicode.com/[parent]">
-  </el-svelecte>
 
-  {#if payload}
-    <pre>{payload}</pre>
-  {/if}
-</form> -->
+  
 
 
 <div class="attrib-basic">
+ 
+  <form action="" on:submit|preventDefault={onSubmit} class="basic-attrib sm:flex-none md:flex justify-between">
+    <div class="car-attrib flex-1">
+      <Svelecte bind:value={$Make}
+     
+      disable-highlight
+      name="make" placeholder="make"
+      disable-sifter
+      clearable
+      options={makes}
+      >
+      </Svelecte>
+    </div>
+    <div class="car-attrib flex-1">
+      <Svelecte bind:value={$Model}
+        disabled={!model_fetchUrl}
+        name="model"
+        required placeholder="model"
+        clearable
+        disable-highlight
+        id="model"
+        fetch={model_fetchUrl}
+        fetchCallback={onFetch}
+      ></Svelecte>
+    </div>
+    <div class="car-attrib flex-1">  
+      <Svelecte bind:value={$Year}
+      disabled={!year_fetchUrl}
+      name="year"
+      disable-highlight
+      required placeholder="year"
+      clearable
+      id="year"
+      fetch={year_fetchUrl}
+      fetchCallback={onFetch}
+     
+      >
+      </Svelecte>
+    </div>
 
-    <form action="" on:submit|preventDefault={onSubmit} class="basic-attrib sm:flex-none md:flex justify-center">
-      <div class="flex-1 car-attrib">
-        <Svelecte bind:value={$Make}
-          name="parent_value" placeholder="make"
-          options={makes}
-          searchable=True
-          clearable=True
-          fetchCallback={ makeSelected }
-          id="is-parent" required>
-
-        </Svelecte>
-      </div>
-      <div class="flex-1 car-attrib">
-        <Svelecte 
-          name="child_value" parent="is-parent"
-          required placeholder="model"
-         
-          valueAsObject
-          
-          searchable=True
-          clearable=True
-          >
-          
-        </Svelecte>
-      </div>
-      <div class="flex-1 car-attrib">  
-        <Svelecte 
-          name="child_value" parent="is-parent"
-          required placeholder="year"
-          options={makes}
-          searchable=True
-          clearable=True
-          >
-        </Svelecte>
-      </div>
-      <div class="flex-1 car-attrib ">
-        <Svelecte bind:value={$Make}
-          name="parent_value" placeholder="submodels"
-          options={makes}
-          searchable=True
-          clearable=True
-          
-          id="is-parent" required>
-        </Svelecte>
-      </div> 
-      {#if payload}
-      <pre>{payload}</pre>
+  
+    {#if payload}
+    <pre>{payload}</pre>
     {/if}
   </form>
 </div>
@@ -231,6 +115,14 @@
   <div class="attrib-details">
     <label clss="q-ty varning">we found <span>165 car instances</span>, you can choose more car attributes to reduce this number</label>
     <form action="" on:submit|preventDefault={onSubmit} class="engine-submodel-body sm:flex-none md:flex justify-center">
+        <div class="flex-1 car-attrib ">
+          <Svelecte 
+          name="parent_value" placeholder="submodels"
+          searchable=True
+          clearable=True
+          id="is-parent" required>
+          </Svelecte>
+        </div>
         <div class="flex-1 car-attrib">
           <Svelecte 
             name="parent_value" placeholder="engine"

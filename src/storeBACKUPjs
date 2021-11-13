@@ -2,10 +2,9 @@ import { get, readable, writable, derived } from 'svelte/store';
 //import { query } from 'svelte-apollo';
 //import { BRAND_TYPES } from './queries';
 //import makes from './data/makes';
-import categories from './data/categories';
-import subcategories from './data/subcategories';
+import categories from './lib/data/categories';
+import subcategories from './lib/data/subcategories';
 import { browser } from '$app/env';
-import makes from './data/makes';
 
 
 export const appStore = writable({
@@ -85,6 +84,25 @@ export const firstResultsAvailable = writable(false);
 // export const makes = writable(browser && carMakes);
 //  carMakes.subscribe((val) => browser && (localStorage.makes = JSON.stringify(val)));
 
+export const Engine = writable([]);
+// export const carCategories = writable(categories);
+// export const carSubcategories = writable(subcategories);
+export const Category = writable([]);
+export const Subcategor = writable([]);
+
+export const vehicle = writable({
+  Make: undefined,
+  Model: undefined,
+  Year: undefined,
+  Engine: undefined,
+  Submodel: undefined,
+  Bodytype: undefined,
+  Category: undefined,
+  Subcategory: undefined,
+  Parttype: undefined,
+});
+
+
   
 const modelsByMakeId = {};
 let loaded = false;
@@ -115,9 +133,6 @@ export const getModelsByMakeId = async (makeId) => {
 		modelsByMakeId[makeId] = items;
         // modelsByMakeId[id] = modelsByMakeIdloaded;
 		return items;
-
-  
- 
 		
 	} catch (err) {
 		console.error(err);
@@ -127,13 +142,6 @@ export const getModelsByMakeId = async (makeId) => {
 
 
 const yearsByMakeModel = {};
-
-
-	
-export const Model = writable(
-  browser && (localStorage.getItem("Model"))
-  );
-  Model.subscribe((val) => browser && localStorage.setItem("Model", val));
 
 
 export const getYearsByMakeModel = async (makeId, modelId) => {
@@ -162,53 +170,39 @@ export const getYearsByMakeModel = async (makeId, modelId) => {
          // modelsByMakeId[id] = modelsByMakeIdloaded;
  		return items;
 		
-     Model.set(yearsByMakeModel);
-     loaded = true;
-
-
  	} catch (err) {
  		console.error(err);
  		return null;
  	}
 };
 
-// export const vechileDeteails = JSON.parse(browser && localStorage.getItem("vechile")) || {
-// 	Make: [makes],
-//  	Model: [],
-//  	Year: [],
-//  	Engine: [],
-//  	Submodel: [],
-//  	Bodytype: [],
-//  	Category: [categories],
-//  	Subcategory: [subcategories],
-//  	Parttype: [],
-//    };
+// export const storedVehicle = JSON.parse(browser && localStorage.getItem("vechile")) || {
+// 	Make: undefined,
+// 	Model: undefined,
+// 	Year: undefined,
+// 	Engine: undefined,
+// 	Submodel: undefined,
+// 	Bodytype: undefined,
+// 	Category: undefined,
+// 	Subcategory: undefined,
+// 	Parttype: undefined,
+//   };
+// export const vechile = writable(browser && storedVehicle);
+// vechile.subscribe (
+// 	(val) => browser && (localStorage.vechile = JSON.stringify(val))
+// );	
 
-//  const vechile = writable(browser && vechile);
-//  vechile.subscribe (
-//  	(val) => browser && (localStorage.vechile = JSON.stringify(val))
-//  );	
-
-export const vehicle = writable({
-  make: undefined,
-  model: undefined,
-  year: undefined,
-  engine: undefined,
-  category: undefined,
-  subcategory: undefined
-});
-
-
-
+export const selectedMake = writable([]);
 
 export const Make = writable(
 	browser && (localStorage.getItem("Make"))
   );
   Make.subscribe((val) => browser && (localStorage.Make = val));
-
-
-
-
+	
+export const Model = writable(
+browser && (localStorage.getItem("Model"))
+   );
+   Model.subscribe((val) => browser && (localStorage.Model = val));
 
 
  export const Year = writable(
@@ -216,8 +210,7 @@ export const Make = writable(
    );
    Year.subscribe((val) => browser && (localStorage.Year = val));
   
-
-
+  
 
 function createSearchHistory() {
   const { subscribe, set, update } = writable([]);
