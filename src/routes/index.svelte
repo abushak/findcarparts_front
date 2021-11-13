@@ -1,216 +1,162 @@
 <script context='module'>
+   import VehicleSelect from '$lib/components/VehicleSelect.svelte';
+
+   
+  // onMount(async () => {
+  //   const module = await import('@beyonk/svelte-carousel');
+  //   Carousel = module.default;
+  // });
+
+	 export const prerender = true;
+
   
-	export const prerender = true;
+
+
 </script>
 
 <script>
-   
-  
+  import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+  import PartsNumb from '$lib/components/PartsNumb.svelte';
+  import VinSearch from '$lib/components/VinSearch.svelte';
+  import Features from '$lib/components/Features.svelte';
   import { appStore, searchHistory, vehicle } from '$lib/store';
-  import VehicleSelect from '$lib/components/VehicleSelect.svelte';
+ 
   import { onMount } from 'svelte';
+//import Affiliates from '$lib/components/Affiliates.svelte';
+import Carousel from '@beyonk/svelte-carousel'
+  let carousel;
 
-  
+  function enter() {
+    carousel.pause();
+  }
+
+  function leave() {
+    carousel.resume();
+  }
+  const handleNextClick = () => {
+    carousel.goToNext()
+  }
 
 
-   
-
-    
-
-    // let time = Date.now();
-    // let ticks = 0;
-    // let refreshTimeStamp = Date.now(); // refresh list time displayevery 30 second
-    // const REFRESH_INTERVAL = 1000; // every second
-    // $: {
-    //     // every 30 seconds update todo items
-    //     ticks++;
-    //     if (ticks >= 30) {
-    //         ticks = 0;
-    //         refreshTimeStamp = time;
-    //     }
-    // }
-    // const initialTodo = {
-    //     title: '',
-    //     completed: false
-    // };
-    // let newTodo = Object.assign({}, initialTodo);
-    // const insertMutation = gql `
-    //     mutation InsertTodo($title: String!, $completed: Boolean) {
-    //       insert_todo(objects: { completed: $completed, title: $title }) {
-    //         affected_rows
-    //         returning {
-    //           id
-    //         }
-    //       }
-    //     }
-    //   `;
-    // function insertTodo() {
-    //     // const insertData = mutation(insertMutation); // works during dev
-    //     time = Date.now(); // update time as our interval could run slower
-    //     refreshTimeStamp = time;
-    //     client.mutate({
-    //         mutation: insertMutation,
-    //         variables: newTodo
-    //     });
-    //     newTodo = Object.assign({}, initialTodo);
-    // }
-    // const queryTodo = gql `
-    //     subscription {
-    //       ebay_product(where: { ebay_searchproducts: { search_id: { _eq: 29 } } }) {
-    //         id
-    //         ebay_id
-    //         url
-    //         title
-    //         description
-    //         price
-    //         thumbnail_url
-    //         ebay_productimages {
-    //           id
-    //           url
-    //           __typename
-    //         }
-    //       }
-    //     }
-    //   `;
-    // let todos = client.subscribe({ query: queryTodo });
-    // const deleteMutation = gql `
-    //     mutation DeleteTodo($id: uuid!) {
-    //       delete_todo_by_pk(id: $id) {
-    //         id
-    //         title
-    //       }
-    //     }
-    //   `;
-    // const deleteTodo = (id) => {
-    //     client.mutate({
-    //         mutation: deleteMutation,
-    //         variables: { id }
-    //     });
-    // };
-    // const setTodoCompletedMutation = gql `
-    //     mutation SetTodoCompleted($id: uuid!, $completed: Boolean) {
-    //       update_todo_by_pk(pk_columns: { id: $id }, _set: { completed: $completed }) {
-    //         id
-    //       }
-    //     }
-    //   `;
-
-      
-    // const toggleTodoCompleted = (todo) => {
-    //     const { id, completed } = todo;
-    //     client.mutate({
-    //         mutation: setTodoCompletedMutation,
-    //         variables: {
-    //             id,
-    //             completed: !completed
-    //         }
-    //     });
-    // };
-    // const moment = (tick, todoTimestamp) => {
-    //     return format(todoTimestamp, 'en_US', { relativeDate: tick });
-    // };
-    // onMount(() => {
-    //     const interval = setInterval(() => {
-    //         time = Date.now();
-    //     }, REFRESH_INTERVAL);
-    //     return () => {
-    //         clearInterval(interval);
-    //     };
-    //     searchHistory.useLocalStorage();
-    //     fetch(api.tokenUrl, {
-    //   "method": "POST",
-    //   "headers": { "Content-Type": "application/json" },
-    //   "body": `{"username":"${api.user}","password":"${api.pass}"}`
-    // })
-    //   .then(res => res.json())
-    //   .then(data => $appStore.token = data);
-    // });
-  
   </script>
   
-  <main class="">
+  <main class="main">
   
-      <div>
+    <div class="tabs-one justify-center z-0">
+      <div class="tab-1">
+        <label for="tab2-1">Vechile</label>
+        <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+        <div class="attrib-sellect-row" >
+          <VehicleSelect />
+        </div>
+      </div>
+      <div class="tab-2">
+        <label for="tab2-2">Parts#</label>
+        <input id="tab2-2" name="tabs-two" type="radio">
+        <div class="parts-sellect-row flex flex-col justify-center">
+          <PartsNumb />
+         
+          <div class="parts-search flex w-full">
+                <div class="insurify-aff-link"> 
+                    <a href="https://mwg.aaa.com/lp/insurance/auto/affiliate?cmp=BAC_Auto_CJ_Affiliate" class="af-link"><img src="/assets/images/auto_insurance.jpg" alt="insurify aff link"/></a>
+                </div>
+                <div class="goodyear-aff-link"> 
+                    <a href="https://www.goodyear.com/" class="af-link"><img src="/assets/images/goodyear.jpg" alt="insurify aff link"/></a>
+                </div>
+          </div> 
+        </div>
+    
+      </div>
+      <div class="tab-3">
+         
+        <label for="tab2-3">Vin#</label>
+        <input id="tab2-3" name="tabs-two" type="radio">
+        <div class="vin-sellect-row flex justify-center">
+          <VinSearch />
+        </div>
+      </div> 
+        <div class="features flex-none pt-100 justify-center">
+          <Features />
+        </div>
+      </div>
+    
+<!--     
+      <Tabs>
+        <TabList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabList>
+      
+        <TabPanel>
+          <h2>Panel One</h2>
+        </TabPanel>
+      
+        <TabPanel>
+          <h2>Panel Two</h2>
+        </TabPanel>
+      
+        <TabPanel>
+          <h2>Panel Three</h2>
+        </TabPanel>
+      </Tabs> -->
+    
+    
+    <div class="affiliates">
 
-       <VehicleSelect />
+      <div class="flex flex-col w-full">
+ 
+        <div class="divider"><h2 class="divider">featured products</h2></div> 
+       <div class="aff-desktop flex">
+            <div class="affiliates-desktop flex-1">
+              <a href="https://insurify.com/partners/insurify/" class="af-link"><img src="/assets/images/insurify.jpg" alt="insurify aff link"/></a>
+            </div>
+            <div class="affiliates-desktop flex-1">
+              <a href="https://www.goodyear.com/" class="af-link"><img src="/assets/images/goodyear_1.jpg" alt="insurify aff link"/></a>
+            </div>
+            <div class="affiliates-desktop flex-1">
+              <a href="https://www.carid.com/tsw-wheels/" class="af-link"><img src="/assets/images/disc.jpg" alt="insurify aff link"/></a>
+            </div>
+            
+       </div>
+        <!-- 1280: 6,1024: 4, 768: 3, 640: 1 -->
+        <!-- <svelte:component this={Carousel} > -->
 
-
+      <div class="aff-mob flex">  
+          <Carousel bind:this={carousel} on:mouseenter={enter} on:mouseleave={leave} perPage={{ 320: 1 }}>
+            <span class="control" slot="left-control">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </span>
+            <div class="slide-content  ">
+              <a href="https://insurify.com/partners/insurify/" class="af-link flex justify-center"><img src="/assets/images/insurify.jpg" alt="insurify aff link"/></a>
+            </div>
+            <div class="slide-content ">
+              <a href="https://www.goodyear.com/" class="af-link flex justify-center "><img src="/assets/images/goodyear_1.jpg" alt="insurify aff link"/></a>
+            </div>
+            <div class="slide-content ">
+              <a href="https://www.carid.com/tsw-wheels/" class="af-link flex justify-center "><img src="/assets/images/disc.jpg" alt="insurify aff link"/></a>
+            </div>
+     
+      
+            <span class="control" slot="right-control">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </Carousel>
+      </div>
+        <!-- </svelte:component> -->
+      </div>
     </div>
+
+ 
+ 
+       
+
+
+  
   </main>
-  <!-- 
-  <style lang="postcss" scoped>
-    .todo-container {
-      @apply container p-5 mx-auto max-w-screen-md shadow-inner;
-    }
   
-    nav {
-      @apply sticky top-0 z-10 bg-white bg-opacity-90;
-    }
-  
-    nav > div {
-      position: relative;
-    }
-  
-    .heading {
-      @apply text-lg font-bold p-3 text-center;
-      @apply md:text-2xl;
-    }
-  
-    form {
-      @apply container content-center p-3 shadow-lg space-x-3 text-lg;
-    }
-  
-    .button {
-      @apply p-3 shadow shadow-xl rounded-md disabled:opacity-50 disabled:cursor-not-allowed;
-    }
-  
-    .button:hover {
-      @apply ring-4 border-blue-300;
-    }
-  
-    .todo-item {
-      @apply items-center w-full p-3 pl-5 mb-2 mt-5 space-x-5 shadow-xl cursor-pointer bg-yellow-100 rounded;
-      @apply md:flex;
-      @apply transition-transform;
-    }
-  
-    .todo-item-title {
-      @apply w-2/3 text-base;
-      @apply md:text-xl;
-    }
-  
-    .todo-item:hover {
-      @apply relative transform z-10;
-      @apply lg:scale-125;
-    }
-  
-    .todo-timestamp {
-      @apply text-xs;
-      @apply md:text-sm;
-      @apply lg:text-lg;
-    }
-  
-    .todo-item:nth-child(2n + 1) {
-      /* 1,3,5th element */
-      transform: rotate(1.5deg);
-    }
-  
-    .todo-item:nth-child(2n) {
-      /* 2,4,6the elment */
-      transform: rotate(0.5deg);
-    }
-  
-    .todo-item:nth-child(n):hover {
-      @apply rotate-0;
-    }
-  
-    .done {
-      @apply text-gray-500;
-      text-decoration: line-through;
-    }
-  
-    .open {
-      text-decoration: none;
-    }
-  </style> -->
   

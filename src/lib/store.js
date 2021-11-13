@@ -90,8 +90,17 @@ export const Make = writable(
 Make.subscribe((val) => browser && (localStorage.Make = val));
 
 //export const carMakes = (makes);
-export const Model = writable([]);
-export const Year = writable([]);
+export const Model = writable(
+  browser && (localStorage.getItem("Model"))
+);
+Model.subscribe((val) => browser && (localStorage.Model = val));
+
+export const Year = writable(
+  browser && (localStorage.getItem("Year"))
+);
+Year.subscribe((val) => browser && (localStorage.Year = val));
+
+
 export const Engine = writable([]);
 // export const carCategories = writable(categories);
 // export const carSubcategories = writable(subcategories);

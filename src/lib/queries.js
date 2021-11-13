@@ -1,5 +1,6 @@
 import { client } from '$lib/graphql-client';
-import { gql } from "@apollo/client/core/core.cjs.js";
+//import { gql } from "@apollo/client/core/core.cjs.js";
+import { gql } from "@apollo/client/core";
 
 //--------------------------------------------------------------------------
 

@@ -1,0 +1,193 @@
+{
+    "data": {
+      "gapc": {
+        "search_gapc_part_types": {
+          "cursor": {
+            "total": 147
+          },
+          "items": [
+            {
+              "name": "Car Cover",
+              "id": "GCPT60913",
+              "weight_g": 405,
+              "width_mm": 305,
+              "height_mm": 105,
+              "length_mm": 205,
+              "thumb_image": null
+            },
+            {
+              "name": "Front End Bra",
+              "id": "GCPT60919",
+              "weight_g": 405,
+              "width_mm": 305,
+              "height_mm": 105,
+              "length_mm": 205,
+              "thumb_image": null
+            },
+            {
+              "name": "Headlight Cover",
+              "id": "GCPT60924",
+              "weight_g": 98,
+              "width_mm": 155,
+              "height_mm": 141,
+              "length_mm": 411,
+              "thumb_image": null
+            },
+            {
+              "name": "Headlight Guard",
+              "id": "GCPT60925",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Mud Flap",
+              "id": "GCPT60928",
+              "weight_g": 1699,
+              "width_mm": 259,
+              "height_mm": 52,
+              "length_mm": 387,
+              "thumb_image": null
+            },
+            {
+              "name": "Tonneau Cover",
+              "id": "GCPT60946",
+              "weight_g": 20269,
+              "width_mm": 85,
+              "height_mm": 78,
+              "length_mm": 133,
+              "thumb_image": null
+            },
+            {
+              "name": "Engine Dress Up Kit",
+              "id": "GCPT61741",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Graphics Kit",
+              "id": "GCPT62510",
+              "weight_g": 1096,
+              "width_mm": 80,
+              "height_mm": 80,
+              "length_mm": 80,
+              "thumb_image": null
+            },
+            {
+              "name": "License Plate Frame",
+              "id": "GCPT62511",
+              "weight_g": 305,
+              "width_mm": 50,
+              "height_mm": 50,
+              "length_mm": 50,
+              "thumb_image": null
+            },
+            {
+              "name": "License Plate Frame and Cover",
+              "id": "GCPT62549",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Striping Kit",
+              "id": "GCPT62559",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Hood Deflector",
+              "id": "GCPT63116",
+              "weight_g": 1711,
+              "width_mm": 50,
+              "height_mm": 50,
+              "length_mm": 50,
+              "thumb_image": null
+            },
+            {
+              "name": "License Plate Retainer",
+              "id": "GCPT63785",
+              "weight_g": 493,
+              "width_mm": 29,
+              "height_mm": 29,
+              "length_mm": 33,
+              "thumb_image": null
+            },
+            {
+              "name": "Mud Flap Kit",
+              "id": "GCPT63786",
+              "weight_g": 550,
+              "width_mm": 50,
+              "height_mm": 50,
+              "length_mm": 50,
+              "thumb_image": null
+            },
+            {
+              "name": "Engine Decal",
+              "id": "GCPT64223",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Hood Guard",
+              "id": "GCPT66333",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Headlight / Tail Light Guard Set",
+              "id": "GCPT66372",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Hood Appearance Set",
+              "id": "GCPT66373",
+              "weight_g": 0,
+              "width_mm": 0,
+              "height_mm": 0,
+              "length_mm": 0,
+              "thumb_image": null
+            },
+            {
+              "name": "Hood Pin",
+              "id": "GCPT66412",
+              "weight_g": 443,
+              "width_mm": 89,
+              "height_mm": 114,
+              "length_mm": 73,
+              "thumb_image": null
+            },
+            {
+              "name": "License Plate",
+              "id": "GCPT66527",
+              "weight_g": 611,
+              "width_mm": 54,
+              "height_mm": 52,
+              "length_mm": 61,
+              "thumb_image": null
+            }
+          ]
+        }
+      }
+    }
+  }
