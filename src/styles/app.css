@@ -1,8 +1,4 @@
 @import "./tailwind.css";
-@import "./styles.css";
+
+@import "./styles";
 @import "./resposive.css";
-/* Write your global styles here, in PostCSS syntax */
-
-
-
-
