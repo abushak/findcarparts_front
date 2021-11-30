@@ -1,5 +1,5 @@
 <script context="module">
-	import { getModelsByMakeId, vechile } from "$lib/store";
+	import { getModelsByMakeId } from "$lib/store";
 
 	
 	export async function load(params) {
@@ -43,11 +43,11 @@
   </div> -->
   
   <!-- <pre></pre> -->
-<svelte:head>
+<!-- <svelte:head>
   {@html '<script type="application/ld+json">'+ JSON.stringify(models,null,2) + '</script>'}
   
   <pre>{JSON.stringify(models,null,2)}</pre>
   
 </svelte:head>
  
- 
+  -->

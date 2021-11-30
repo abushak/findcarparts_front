@@ -1,4 +1,4 @@
-import { getModelsByMakeId, vechile } from "$lib/store";
+import { getModelsByMakeId } from "$lib/store";
 import { page } from '$app/stores';
 import { onMount } from "svelte";	
 
@@ -20,10 +20,7 @@ import { onMount } from "svelte";
 				body: models
 
 			}
-			onMount (() => {
-				$vechile.Make = makeId;
-			});
-			
+		
 		
 	}
 

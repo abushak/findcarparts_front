@@ -20,6 +20,12 @@
   // export async function load({ params }) {
     // 	return await this.get(`.api/${params.makeId}.json`);
     // }
+
+
+  function resetPayload(e) {
+    payload = null;
+  } 
+
   export const prerender = true;
 </script>
 
@@ -69,12 +75,13 @@
   <form action="" on:submit|preventDefault={onSubmit} class="basic-attrib sm:flex-none md:flex justify-between">
     <div class="car-attrib flex-1">
       <Svelecte bind:value={$Make}
-     
-      disable-highlight
+      disableHighlight
       name="make" placeholder="make"
       disable-sifter
       clearable
       options={makes}
+      
+      on:blur={resetPayload}
       >
       </Svelecte>
     </div>
@@ -82,19 +89,21 @@
       <Svelecte bind:value={$Model}
         disabled={!model_fetchUrl}
         name="model"
+        disableHighlight
         required placeholder="model"
         clearable
         disable-highlight
         id="model"
         fetch={model_fetchUrl}
         fetchCallback={onFetch}
+        
       ></Svelecte>
     </div>
     <div class="car-attrib flex-1">  
       <Svelecte bind:value={$Year}
       disabled={!year_fetchUrl}
       name="year"
-      disable-highlight
+      disableHighlight
       required placeholder="year"
       clearable
       id="year"

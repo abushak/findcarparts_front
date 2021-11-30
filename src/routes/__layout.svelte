@@ -1,6 +1,8 @@
 <script>
 	
 	import '../styles/app.css';
+	// import '../styles/styles.css';
+	// import '../styles/resposive.css';
 	
 	import Headroom from "svelte-headroom";
 	import Footer from '$lib/components/Footer.svelte';
